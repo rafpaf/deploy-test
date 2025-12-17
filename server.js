@@ -1,35 +1,35 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files (for the callback HTML page)
-app.use(express.static('.'));
-app.get('/', (req, res) => {
-  res.send('hello there');
-})
+app.use(express.static("."));
+app.get("/", (req, res) => {
+  res.send("hello there");
+});
 
-app.get('/a', (req, res) => {
-  res.send('hi there');
-})
+app.get("/a", (req, res) => {
+  res.send("hi there");
+});
 
 // Auth0 callback endpoint - handles Authorization Code flow
 // Auth0 redirects here with ?code=... or ?access_token=... etc.
-app.get('/callback', (req, res) => {
-  console.log('=== Auth0 Callback Received ===');
-  console.log('Query params:', req.query);
+app.get("/callback", (req, res) => {
+  console.log("=== Auth0 Callback Received ===");
+  console.log("Query params:", req.query);
 
   if (req.query.code) {
-    console.log('Authorization Code:', req.query.code);
+    console.log("Authorization Code:", req.query.code);
   }
   if (req.query.access_token) {
-    console.log('Access Token:', req.query.access_token);
+    console.log("Access Token:", req.query.access_token);
   }
   if (req.query.id_token) {
-    console.log('ID Token:', req.query.id_token);
+    console.log("ID Token:", req.query.id_token);
   }
   if (req.query.error) {
-    console.log('Error:', req.query.error);
-    console.log('Error Description:', req.query.error_description);
+    console.log("Error:", req.query.error);
+    console.log("Error Description:", req.query.error_description);
   }
 
   // Serve HTML that can also extract tokens from URL fragment (for implicit flow)
@@ -70,6 +70,6 @@ app.get('/callback', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(\`Server running on http://localhost:\${PORT}\`);
-  console.log(\`Auth0 callback URL: http://localhost:\${PORT}/callback\`);
+  console.log(`Server running on http://localhost:\${PORT}`);
+  console.log(`Auth0 callback URL: http://localhost:\${PORT}/callback`);
 });
