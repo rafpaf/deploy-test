@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('.'));
 app.get('/', (req, res) => {
   res.send('hello, world');
-}
+})
 
 // Auth0 callback endpoint - handles Authorization Code flow
 // Auth0 redirects here with ?code=... or ?access_token=... etc.
