@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 // Serve static files (for the callback HTML page)
 app.use(express.static('.'));
 app.get('/', (req, res) => {
-  res.send('hello');
+  res.send('hello, world');
 }
 
 // Auth0 callback endpoint - handles Authorization Code flow
